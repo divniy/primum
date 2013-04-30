@@ -1,4 +1,5 @@
 Primum::Application.routes.draw do
+  devise_for :users
   resources :posts
   get "/event_listener", to: 'browser#event_listener'
 

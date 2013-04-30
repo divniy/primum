@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_new_post, only: [:index]
   before_action :set_post, only: [:destroy]
   before_action :set_tags, only: [:index]

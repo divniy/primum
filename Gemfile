@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0.beta1'
 
 gem 'pg'
-#gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
+gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
 
 group :development do
   gem 'ffaker'
