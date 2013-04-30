@@ -2,8 +2,8 @@ defaults: &defaults
   adapter: postgresql
   encoding: unicode
   pool: 16
-  username: postgres
-  password: iwill
+  username: primum
+  password: work0329
 
 development:
   <<: *defaults
