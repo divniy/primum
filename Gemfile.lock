@@ -48,7 +48,7 @@ GEM
     arel (4.0.0)
     atomic (1.1.8)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.1.1)
+    bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     builder (3.1.4)
     coffee-rails (4.0.0)
@@ -78,8 +78,8 @@ GEM
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
-    puma (1.6.3)
-      rack (~> 1.2)
+    puma (2.0.0)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -146,7 +146,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.7.0)
   acts-as-taggable-on!
-  bootstrap-sass (~> 2.3.1.1)
+  bootstrap-sass (= 2.3.1.0)
   coffee-rails (~> 4.0.0.beta1)
   devise!
   ffaker

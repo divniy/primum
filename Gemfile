@@ -23,7 +23,7 @@ group :assets do
 end
 
 gem 'slim-rails'
-gem 'bootstrap-sass', '~> 2.3.1.1'
+gem 'bootstrap-sass', '= 2.3.1.0'
 gem 'jquery-rails'
 
 gem 'acts-as-taggable-on', github: 'divniy/acts-as-taggable-on'
