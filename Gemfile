@@ -35,7 +35,6 @@ gem 'turbolinks'
 #gem 'jbuilder', '~> 1.0.1'
 gem 'active_model_serializers', '~> 0.7.0'
 
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
