@@ -1,3 +1,5 @@
+require 'ffaker'
+
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
@@ -30,12 +32,13 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @post.reload.notify_post_create
-        @post_json = PostSerializer.new(@post).to_json
+        @post_json = PostSerializer.new(@post).to_json if Rails.env == 'development'
+
         set_available_tags
         set_new_post
 
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
-        format.js
+        format.js { render nothing: true if Rails.env == 'production' }
       else
         format.html { render action: 'index' }
       end

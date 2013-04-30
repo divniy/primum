@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-#jQuery(document).ready ->
-#  source = new EventSource('/event_listener')
-#  source.addEventListener 'test_event', (e) ->
-#    data = $.parseJSON(e.data)
-#    create_post(data)
+jQuery(document).ready ->
+  source = new EventSource('/event_listener')
+  source.addEventListener 'test_event', (e) ->
+    data = $.parseJSON(e.data)
+    create_post(data)
