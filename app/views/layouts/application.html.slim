@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Primum
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to 'Primus', root_path, class: 'brand'
+          ul.nav
+            li = link_to 'Posts', posts_path
+    .container
+      - if notice.present?
+        .alert.alert-success = notice
+      - if alert.present?
+        .alert.alert-error = alert
+      = yield
+

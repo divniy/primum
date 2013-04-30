@@ -1,0 +1,7 @@
+div id="post_#{post.id}" class="well well-small"
+  = link_to '&times;'.html_safe, post, :method => :delete, remote: true, class: 'close'
+  p
+    small = post.created_at
+    - post.tags.each do |tag|
+      span.label = tag.name
+  p = post.body

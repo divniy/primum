@@ -1,0 +1,9 @@
+- if @tags.present?
+  = form_tag posts_path, :method => :get, :remote => true do
+    - @tags.each do |tag|
+      label.checkbox
+        = check_box_tag "tags[]", tag.name
+        = tag.name
+    = button_tag "Filter", class: 'btn btn-small'
+- else
+  p Tags empty

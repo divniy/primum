@@ -1,0 +1,20 @@
+= form_for @post, remote: true do |f|
+  - if @post.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+      ul
+        - @post.errors.full_messages.each do |message|
+          li = message
+
+  = f.label :body
+  = f.text_area :body
+
+  = f.label :tag_list
+  - @tags.each do |tag|
+    label.checkbox
+      = check_box_tag 'post[tag_list][]', tag.name
+      = tag.name
+
+  = f.text_field :tag_list, name: 'post[tag_list][]'
+  .actions
+    = f.submit 'Save', class: 'btn'
