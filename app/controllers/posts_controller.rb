@@ -71,6 +71,7 @@ class PostsController < ApplicationController
     end
 
     def set_session_tags
+      user_session[:tags] ||= []
       if params.include? :tags
         params[:tags].delete 'all'
         user_session[:tags] = params[:tags].present? ? params[:tags] : []
