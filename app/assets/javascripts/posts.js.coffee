@@ -9,10 +9,19 @@ window.replace_form = (data) ->
   $('.new_post').html(data)
 
 window.create_post = (data) ->
-  console.log data
-
+  console.log "Incoming data: #{data}"
   post = data.post
 
+  if post.tags.length == 0
+    draw_post(post)
+    return
+
+  tag_names = post.tags.map (mupped) -> mupped.name
+  draw_post(post) if tag_filter.permit_tags(tag_names)
+
+
+
+window.draw_post = (post) ->
   wrapper = $('<div class="well well-small"></div>').attr('id', "post_#{post.id}")
 
   close_btn = $('<a class="close" rel="nofollow" data-method="delete" data-remote="true" href="#">&times;</a>').attr('href', "/posts/#{post.id}")

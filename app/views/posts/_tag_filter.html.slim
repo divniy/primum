@@ -1,8 +1,9 @@
 - if @tags.present?
-  = form_tag posts_path, :method => :get, :remote => true do
+  = form_tag posts_path, :method => :get, :remote => true, class: 'tag_filter_form' do
+    = hidden_field_tag "tags[]", 'all'
     - @tags.each do |tag|
       label.checkbox
-        = check_box_tag "tags[]", tag.name
+        = check_box_tag "tags[]", tag.name, user_session[:tags].include?(tag.name)
         = tag.name
     = button_tag "Filter", class: 'btn btn-small'
 - else

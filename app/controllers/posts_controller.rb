@@ -3,17 +3,17 @@ class PostsController < ApplicationController
 
   before_action :set_new_post, only: [:index]
   before_action :set_post, only: [:destroy]
-  before_action :set_tags, only: [:index]
+
+  before_action :set_session_tags, only: [:index]
+  before_action :set_available_tags, only: [:index]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    if params[:tags].present?
-      logger.debug params[:tags]
-      @posts = @posts.tagged_with(params[:tags])
+    @posts = Post.by_creation
+    if user_session[:tags].present?
+      @posts = @posts.tagged_with(user_session[:tags])
     end
-    @posts = @posts.by_creation
 
     respond_to do |format|
       format.html
@@ -31,14 +31,11 @@ class PostsController < ApplicationController
       if @post.save
         @post.reload.notify_post_create
         @post_json = PostSerializer.new(@post).to_json
-        set_tags
+        set_available_tags
         set_new_post
 
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
-        format.js   {
-
-          #render nothing: true
-        }
+        format.js
       else
         format.html { render action: 'index' }
       end
@@ -66,8 +63,15 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    def set_tags
+    def set_available_tags
       @tags = ActsAsTaggableOn::Tag.all
+    end
+
+    def set_session_tags
+      if params.include? :tags
+        params[:tags].delete 'all'
+        user_session[:tags] = params[:tags].present? ? params[:tags] : []
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
