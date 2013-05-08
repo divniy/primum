@@ -4,8 +4,8 @@ html
     title Primum
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
-    - if Rails.env == 'production'
-      = javascript_include_tag 'live'
+    = yield :javascripts
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
     = csrf_meta_tags
   body
     .navbar.navbar-fixed-top
@@ -14,6 +14,9 @@ html
           = link_to 'Primus', root_path, class: 'brand'
           ul.nav
             li = link_to 'Posts', posts_path
+          - if user_signed_in?
+            ul.nav.pull-right
+              li = link_to 'Log out', destroy_user_session_path, :method => :delete
     .container
       - if notice.present?
         .alert.alert-success = notice

@@ -27,7 +27,7 @@ Primum::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Whether to fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true # orig: false
 
   # Generate digests for assets URLs.
   config.assets.digest = true
