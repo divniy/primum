@@ -1,5 +1,7 @@
 environment 'production'
 
+bind 'unix:///home/divniy/apps/primum/tmp/puma/puma.sock'
+
 pidfile '/home/divniy/apps/primum/tmp/puma/pid'
 state_path '/home/divniy/apps/primum/tmp/puma/state'
 activate_control_app
