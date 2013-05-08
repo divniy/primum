@@ -25,7 +25,6 @@ class PostsController < ApplicationController
   end
 
   # POST /posts
-  # POST /posts.json
   def create
     @post = Post.new(post_params)
 
@@ -46,7 +45,6 @@ class PostsController < ApplicationController
   end
 
   # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
     @post.destroy
     respond_to do |format|
@@ -80,7 +78,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      #logger << params.inspect
       params.require(:post).permit(:body, {tag_ids: []}, {tag_list: []})
     end
 end
