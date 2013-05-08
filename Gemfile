@@ -18,6 +18,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'slim', '>= 1.3.6'
 gem 'slim-rails'
 gem 'bootstrap-sass', '= 2.3.1.0'
 gem 'jquery-rails'
