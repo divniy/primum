@@ -1,2 +1,3 @@
-replace_form('<%= j render 'form' %>')
-create_post(<%= @post_json.html_safe %>);
+replace_form('<%= j render 'form' %>');
+var data = <%= @post_json.html_safe %>;
+main_headline.new_post(data.post);

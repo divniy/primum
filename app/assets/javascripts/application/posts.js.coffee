@@ -2,24 +2,34 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-window.replace_posts = (data) ->
-  $('.headline').html(data)
+class window.Headline
+  constructor: () ->
+    @context = $('.headline')
+
+  replace_html: (data) ->
+    @context.html(data)
+
+  new_post: (post) ->
+    console.log "Incoming data for new post:"
+    console.log post
+
+    if post.tag_list.length == 0
+      draw_post(post)
+      return
+    #tag_names = post.tags.map (mupped) -> mupped.name
+    draw_post(post) if tag_filter.permit_tags(post.tag_list)
+
+  delete_post: (post_id) ->
+    console.log "Delete post with id: #{post_id}"
+    @context.find("#post_#{post_id}").remove()
+
+# Init Headline
+$(document).bind 'ready page:load', ->
+  window.main_headline = new Headline
+
 
 window.replace_form = (data) ->
   $('.new_post').html(data)
-
-window.create_post = (data) ->
-  console.log "Incoming data:"
-  console.log data
-  post = data.post
-
-  if post.tag_list.length == 0
-    draw_post(post)
-    return
-  #tag_names = post.tags.map (mupped) -> mupped.name
-  draw_post(post) if tag_filter.permit_tags(post.tag_list)
-
-
 
 window.draw_post = (post) ->
   console.log "Draw data:"
@@ -41,7 +51,3 @@ window.draw_post = (post) ->
   wrapper.append(body)
 
   $('.headline').prepend(wrapper)
-
-window.delete_post = (post_id) ->
-  console.log "Delete post with id: #{post_id}"
-  $("#post_#{post_id}").remove()

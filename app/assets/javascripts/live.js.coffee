@@ -8,10 +8,10 @@ jQuery(document).ready ->
 
   source.addEventListener 'new_post', (e) ->
     data = $.parseJSON(e.data)
-    create_post(data)
+    main_headline.new_post(data.post)
 
   source.addEventListener 'delete_post', (e) ->
-    delete_post(e.data)
+    main_headline.delete_post(e.data)
 
   source.onopen = (e) ->
     console.log "Start live streaming"
