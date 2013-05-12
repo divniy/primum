@@ -5,7 +5,9 @@ gem 'rails', '4.0.0.beta1'
 gem 'pg'
 gem 'puma'
 
-gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
+gem 'devise', '3.0.0.rc'
+#, github: 'plataformatec/devise', branch: 'rails4'
+
 gem 'acts-as-taggable-on', github: 'divniy/acts-as-taggable-on'
 
 group :development do
