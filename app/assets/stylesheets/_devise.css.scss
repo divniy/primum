@@ -1,0 +1,30 @@
+@import 'variables';
+
+form.signin {
+  max-width: 300px;
+  margin: 0 auto 20px;
+  padding: 19px 29px 29px;
+  background-color: $grayDark;
+
+  .heading,
+  .checkbox {
+    margin-bottom: 10px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    padding: 7px 9px;
+    margin-bottom: 15px;
+  }
+
+  .actions {
+    @extend .clearfix;
+    .buttons {
+      float: left;
+      width: 40%;
+    }
+  }
+}

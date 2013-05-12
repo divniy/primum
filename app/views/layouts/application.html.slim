@@ -14,14 +14,18 @@ html
           /= link_to 'Primus', root_path, class: 'brand'
           = link_to image_tag('logo_orange.png'), root_path, class: 'logo'
           ul.nav
-            li = link_to 'Posts', posts_path
+            / li = link_to 'Posts', posts_path
           - if user_signed_in?
             ul.nav.pull-right
               li = link_to 'Log out', destroy_user_session_path, :method => :delete
     .container
       - if notice.present?
-        .alert.alert-success = notice
+        .alert.fade.in.alert-success
+          a class="close" data-dismiss="alert" href="#" &times;
+          = notice
       - if alert.present?
-        .alert.alert-error = alert
+        .alert.fade.in.alert-error
+          a class="close" data-dismiss="alert" href="#" &times;
+          = alert
       = yield
 
