@@ -1,7 +1,15 @@
-/*body {
-  position: relative;
-  padding-top: 60px;
-}*/
+// Body
+body {
+  background: image-url('bg.png') 0 0 repeat;
+}
+
+
+//Header
+
+.logo {
+  float: left;
+  img { height: 45px; padding-top: 3px;}
+}
 
 .navbar-static-top {
   padding-bottom: 20px;

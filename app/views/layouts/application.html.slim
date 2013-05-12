@@ -8,10 +8,11 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = csrf_meta_tags
   body
-    .navbar.navbar-static-top
+    .navbar.navbar-static-top.navbar-inverse
       .navbar-inner
         .container
-          = link_to 'Primus', root_path, class: 'brand'
+          /= link_to 'Primus', root_path, class: 'brand'
+          = link_to image_tag('logo_orange.png'), root_path, class: 'logo'
           ul.nav
             li = link_to 'Posts', posts_path
           - if user_signed_in?
