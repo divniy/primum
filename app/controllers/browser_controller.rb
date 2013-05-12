@@ -4,13 +4,10 @@ class BrowserController < ApplicationController
   def event_listener
     response.headers['Content-Type'] = 'text/event-stream'
 
-    #post = Post.new
-    #post.on_post_create do |post|
-    #  response.stream.write(sse({post: post}, {event: 'test_event'}))
-    #end
-    PostFeed.on_create do |post|
-      response.stream.write(sse(post, {event: 'test_event'}))
+    PostFeed.changed do |event, data|
+      response.stream.write(sse(data, event: event))
     end
+
   rescue IOError
     #Client disconnected
   ensure
@@ -19,7 +16,7 @@ class BrowserController < ApplicationController
 
   private
 
-  def sse(object, options = {})
-    (options.map{|k,v| "#{k}: #{v}" } << "data: #{object}").join("\n") + "\n\n"
+  def sse(data, options = {})
+    (options.map{|k,v| "#{k}: #{v}" } << "data: #{data}").join("\n") + "\n\n"
   end
 end

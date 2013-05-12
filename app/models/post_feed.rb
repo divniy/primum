@@ -1,29 +1,34 @@
 class PostFeed
   class << self
+    EVENTS = ['new_post', 'delete_post']
+
     def create(post)
-      #post.reload
-      ActiveRecord::Base.connection_pool.with_connection do |connection|
-        post_json = PostSerializer.new(post).to_json
-        ActiveRecord::Base.logger.debug "post_json: #{post_json}"
-        connection.execute "NOTIFY #{channel}, #{connection.quote(post_json)}"
-      end
+      post_json = PostSerializer.new(post).to_json
+      notify_about 'new_post', post_json
     end
 
-    def on_create
+    def delete(post)
+      notify_about 'delete_post', post.id.to_s
+    end
+
+    def changed
       connection = ActiveRecord::Base.connection_pool.checkout
-      connection.execute "LISTEN #{channel}"
+      EVENTS.each do |event|
+        connection.execute "LISTEN #{event}"
+      end
       loop do
-        connection.raw_connection.wait_for_notify do |event, pid, post_json|
-          yield post_json
+        connection.raw_connection.wait_for_notify do |event, pid, data|
+          yield event, data
         end
       end
-    ensure
-      connection.execute "UNLISTEN #{channel}"
-      ActiveRecord::Base.connection_pool.checkin(connection)
     end
 
-    def channel
-      "test_channel"
+    private
+
+    def notify_about(event, data)
+      ActiveRecord::Base.connection_pool.with_connection do |connection|
+        connection.execute "NOTIFY #{event}, #{connection.quote(data)}"
+      end
     end
   end
 end

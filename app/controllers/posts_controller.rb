@@ -7,15 +7,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:destroy]
 
   before_action :set_session_tags, only: [:index]
-  before_action :set_available_tags, only: [:index]
+  before_action :set_available_tags, only: [:index, :create]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.by_creation
+    @posts = Post
     if user_session[:tags].present?
       @posts = @posts.tagged_with(user_session[:tags])
     end
+    @posts = @posts.by_creation.decorate
 
     respond_to do |format|
       format.html
@@ -30,14 +31,12 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.reload.notify_post_create
         @post_json = PostSerializer.new(@post).to_json if Rails.env == 'development'
 
-        set_available_tags
         set_new_post
 
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
-        format.js { render nothing: true if Rails.env == 'production' }
+        format.js   { render nothing: true if Rails.env == 'production' }
       else
         format.html { render action: 'index' }
       end
@@ -49,7 +48,7 @@ class PostsController < ApplicationController
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url }
-      format.js
+      format.js   { render nothing: true if Rails.env == 'production' }
     end
   end
 

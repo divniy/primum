@@ -8,6 +8,10 @@ gem 'puma'
 gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
 gem 'acts-as-taggable-on', github: 'divniy/acts-as-taggable-on'
 
+group :development do
+  gem 'pry-rails'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 4.0.0.beta1'
   gem 'coffee-rails', '~> 4.0.0.beta1'
@@ -24,6 +28,7 @@ gem 'bootstrap-sass', '= 2.3.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 
+gem 'draper', '~> 1.0'
 gem 'active_model_serializers', '~> 0.7.0'
 gem 'ffaker'
 

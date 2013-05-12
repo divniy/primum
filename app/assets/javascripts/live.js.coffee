@@ -5,12 +5,15 @@
 jQuery(document).ready ->
 
   source = new EventSource('/event_listener')
-  source.addEventListener 'test_event', (e) ->
+
+  source.addEventListener 'new_post', (e) ->
     data = $.parseJSON(e.data)
     create_post(data)
 
+  source.addEventListener 'delete_post', (e) ->
+    delete_post(e.data)
+
   source.onopen = (e) ->
     console.log "Start live streaming"
-
   source.onerror = (e) =>
     console.log "EventSource failed. readyState = #{source.readyState}"
