@@ -4,7 +4,8 @@ form.signin {
   max-width: 300px;
   margin: 0 auto 20px;
   padding: 19px 29px 29px;
-  background-color: $grayDark;
+  background-color: $sideBackground;
+  @include border-radius(10px);
 
   .heading,
   .checkbox {
