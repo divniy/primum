@@ -1,0 +1,4 @@
+.tags-filter
+  = render @tag_categories if @tag_categories.any?
+  - if managing_tags?
+    = render 'tag_categories/form'

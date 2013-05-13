@@ -64,6 +64,9 @@ class PostsController < ApplicationController
     end
 
     def set_available_tags
+      @tag_categories = TagCategory.published
+      @tag_category = TagCategory.new
+      logger.debug @tag_category
       @tags = ActsAsTaggableOn::Tag.all
     end
 

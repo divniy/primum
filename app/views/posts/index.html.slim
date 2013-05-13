@@ -3,9 +3,11 @@
     = javascript_include_tag 'live'
 
 .row
-  .span2
-    = render 'tag_filter'
-  .span10
+  .span3
+    /= render 'tag_filter'
+    = render 'tag_categories/tags_filter'
+    = tag_manager_button
+  .span9
     .new_post
       = render 'form'
     .headline
