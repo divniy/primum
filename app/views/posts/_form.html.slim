@@ -9,9 +9,6 @@
   = f.label :body
   = f.text_area :body
 
-  p = link_to "Show tags", tag_categories_path, class: 'show_category', remote: true
-  .tags_placeholder
-
   /
     = f.label :tag_list
     - @tags.each do |tag|
