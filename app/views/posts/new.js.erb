@@ -1,0 +1,5 @@
+<% if manage_posts? %>
+  $('.new_post').html('<%= j render 'form' %>');
+<% else %>
+  $('.new_post').html('');
+<% end %>

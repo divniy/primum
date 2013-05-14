@@ -7,6 +7,7 @@
     = render 'filters/filters_bar'
   .span9
     .new_post
-      /= render 'posts/form'
+      - if manage_posts?
+        = render partial: 'posts/form'
     .headline
       = render @posts

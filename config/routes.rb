@@ -1,7 +1,5 @@
 Primum::Application.routes.draw do
 
-  get "filters/index"
-  get "filter/index"
   devise_for :users
 
   resources :posts

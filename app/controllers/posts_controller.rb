@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   before_action :set_new_post, only: [:index]
   before_action :set_post, only: [:destroy]
+  before_action :set_post_form_mode, only: :new
 
   #before_action :set_session_tags, only: [:index]
   #before_action :set_available_tags, only: [:index, :create]
@@ -23,6 +24,10 @@ class PostsController < ApplicationController
       format.json { render json: @posts }
       format.js
     end
+  end
+
+  def new
+    set_new_post
   end
 
   # POST /posts
@@ -77,6 +82,13 @@ class PostsController < ApplicationController
     #    user_session[:tags] = params[:tags].present? ? params[:tags] : []
     #  end
     #end
+
+    def set_post_form_mode
+      if params.include?(:session_key) && params[:session_key] == manage_posts_key
+        user_session[manage_posts_key] = true  if params[:session_value] == 'false'
+        user_session[manage_posts_key] = false if params[:session_value] == 'true'
+      end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
