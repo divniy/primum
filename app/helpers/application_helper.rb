@@ -1,11 +1,15 @@
 module ApplicationHelper
-  def managing_tags?
-    user_signed_in? && user_session[:managing_tags] == true
-  end
+  def toggle_link_to(name, options, session_key, html_options = {})
+    active_state = user_signed_in? && user_session[session_key] == true
+    data = { 'toggle' => 'button', 'toggle-session' => session_key }
 
-  def tag_manager_button
-    button_state = ('active' if managing_tags?) || ''
-    link_to 'Manage Tags', tag_categories_path(toggle_managing_tags: true), remote: true,
-            class: "manage-tags btn btn-small btn-block #{button_state}", data: { toggle: 'button' }
+    html_options.merge! remote: true
+    if active_state
+      html_options[:class] ||= {}
+      html_options[:class].push('active')
+    end
+    html_options.deep_merge! data: data
+
+    link_to(name, options, html_options)
   end
 end

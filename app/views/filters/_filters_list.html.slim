@@ -1,0 +1,4 @@
+.filters_list
+  = render @filters
+- if manage_filters?
+  = render partial: 'filters/form', locals: { filter: Filter.new }

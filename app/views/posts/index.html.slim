@@ -5,8 +5,8 @@
 .row
   .span3
     /= render 'tag_filter'
-    = render 'tag_categories/tags_filter'
-    = tag_manager_button
+    /= render 'tag_categories/tags_filter'
+    = render 'filters/filters_bar'
   .span9
     .new_post
       = render 'form'

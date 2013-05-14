@@ -1,0 +1,9 @@
+.filter id="filter_#{filter.id}"
+  h5.head
+    = filter.title
+    = link_to "+", filter, remote: true, class: 'add_tag'
+    = link_to "&times;".html_safe, filter, method: :delete, remote: true, class: 'del'
+  ul
+    li Tag1
+    li Tag1
+    li Tag1

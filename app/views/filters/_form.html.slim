@@ -1,0 +1,5 @@
+= form_for @filter || filter, remote: true do |f|
+  .input-append
+    = f.text_field :title, class: 'input-medium'
+    /'input-block-level'
+    = f.button '+', class: 'btn'

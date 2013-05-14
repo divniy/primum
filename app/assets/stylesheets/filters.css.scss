@@ -1,0 +1,30 @@
+// Place all the styles related to the Filters controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.filters_bar {
+  .filter {
+    .head {
+      .add_tag { margin-left: 5px; }
+      .del { float: right; }
+    }
+  }
+
+  form.new_filter {
+    margin: 10px 0;
+
+    .input-append {
+      margin: 0;
+    }
+
+    input {
+      width: 130px;
+    }
+
+    button {
+      padding: 4px 8px;
+      //@include box-sizing(border-box);
+      //width: 40px;
+    }
+  }
+}

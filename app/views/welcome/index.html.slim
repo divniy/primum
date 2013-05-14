@@ -1,5 +1,12 @@
-h1 Headline
+- content_for :javascripts do
+  - if Rails.env == 'production'
+    = javascript_include_tag 'live'
 
-.headline
-  - @posts.each do |item|
-    p = item.body
+.row
+  .span2
+    = render 'filters/filters_bar'
+  .span9
+    .new_post
+      /= render 'posts/form'
+    .headline
+      = render @posts
