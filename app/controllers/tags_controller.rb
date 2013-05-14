@@ -1,15 +1,22 @@
 class TagsController < ApplicationController
   def new
-    @tag = Filter.find(params[:filter_id])
+    @filter = Filter.find(params[:filter_id])
+    @tag = @filter.tags.build
   end
 
   def create
-    logger.debug params
+    @filter = Filter.find(params[:filter_id])
+    @tag = @filter.tags.build(tags_params)
+    @tag.save
+  end
+
+  def destroy
+    @tag = Tag.find(params[:id]).destroy
   end
 
   private
 
   def tags_params
-    params.require(:filter).permit(:title)
+    params.require(:tag).permit(:name)
   end
 end

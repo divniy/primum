@@ -1,0 +1,2 @@
+$("#filter_<%= @filter.id %>").find(".tags_list form").remove();
+$("#filter_<%= @filter.id %>").find(".tags_list").append('<%= j render @tag %>');

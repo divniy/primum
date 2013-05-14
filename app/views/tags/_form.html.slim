@@ -1,1 +1,4 @@
-= form_for @tag, remote: true do |f|
+= form_for([@filter, @tag], remote: true) do |f|
+  .input-append
+    = f.text_field :name, class: 'input-small'
+    = f.button '+', class: 'btn'

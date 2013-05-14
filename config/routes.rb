@@ -6,8 +6,9 @@ Primum::Application.routes.draw do
 
   resources :posts
   resources :filters, only: [:index, :create, :destroy] do
-    resources :tags, only: [:new, :create, :destroy]
+    resources :tags, only: [:new, :create]
   end
+  resources :tags, only: :destroy
 
 
   get "/event_listener", to: 'browser#event_listener'

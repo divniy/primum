@@ -1,0 +1,4 @@
+li.tag id="tag_#{tag.id}"
+  = tag.name
+  - if manage_filters?
+    = link_to "&times;".html_safe, tag, method: :delete, remote: true, class: 'del'
