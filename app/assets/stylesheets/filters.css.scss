@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variables";
+
 .filters_bar {
   .filter {
     .head {
@@ -31,4 +33,23 @@
       //width: 40px;
     }
   }
+
+  .tags_list {
+    .tag {
+      .del {
+        margin-left: 5px;
+        display: none;
+      }
+      &:hover .del {
+        display: inline;
+      }
+    }
+  }
+
+  // Buttons
+  .del {
+    color: $red;
+    text-decoration: none;
+  }
 }
+
