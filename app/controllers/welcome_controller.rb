@@ -4,7 +4,8 @@ class WelcomeController < ApplicationController
   def index
     find_posts
     find_filters
-    @post = Post.new
+
+    #@tags = ActsAsTaggableOn::Tag.all
     #stop_manage_filters
   end
 end

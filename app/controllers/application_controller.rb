@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def find_filters
     @filters = Filter.all
+    @tags = Tag.all
   end
 
   def find_posts
@@ -17,6 +18,7 @@ class ApplicationController < ActionController::Base
       @posts = @posts.tagged_with(user_session[:tags])
     end
     @posts = @posts.by_creation.decorate
+    @post = Post.new
   end
 
 end

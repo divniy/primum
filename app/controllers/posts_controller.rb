@@ -7,16 +7,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:destroy]
   before_action :set_post_form_mode, only: :new
 
-  #before_action :set_session_tags, only: [:index]
-  #before_action :set_available_tags, only: [:index, :create]
+  before_action :set_session_tags, only: [:index]
+  before_action :set_available_tags, only: [:index, :create, :new]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post
-    #if user_session[:tags].present?
-    #  @posts = @posts.tagged_with(user_session[:tags])
-    #end
+    if user_session[:tags].present?
+      @posts = @posts.tagged_with(user_session[:tags])
+    end
     @posts = @posts.by_creation.decorate
 
     respond_to do |format|
@@ -68,20 +68,18 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    #def set_available_tags
-    #  @tag_categories = TagCategory.published
-    #  @tag_category = TagCategory.new
-    #  logger.debug @tag_category
-    #  @tags = ActsAsTaggableOn::Tag.all
-    #end
+    def set_available_tags
+      @tags = Tag.all
+      #@tags = ActsAsTaggableOn::Tag.all
+    end
 
-    #def set_session_tags
-    #  user_session[:tags] ||= ['all']
-    #  if params.include? :tags
-    #    params[:tags].delete 'all'
-    #    user_session[:tags] = params[:tags].present? ? params[:tags] : []
-    #  end
-    #end
+    def set_session_tags
+      user_session[:tags] ||= ['all']
+      if params.include? :tags
+        params[:tags].delete 'all'
+        user_session[:tags] = params[:tags].present? ? params[:tags] : []
+      end
+    end
 
     def set_post_form_mode
       if params.include?(:session_key) && params[:session_key] == manage_posts_key

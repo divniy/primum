@@ -3,7 +3,9 @@
     = render @filters
 - else
   = form_tag posts_path, :method => :get, :remote => true, class: 'tag_filter_form' do
+    = hidden_field_tag "tags[]", 'all'
     = render @filters
+
 
 - if manage_filters?
   = render partial: 'filters/form', locals: { filter: Filter.new }

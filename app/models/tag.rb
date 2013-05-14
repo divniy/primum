@@ -1,3 +1,3 @@
-class Tag < ActiveRecord::Base
+class Tag < ActsAsTaggableOn::Tag
   belongs_to :filter
 end

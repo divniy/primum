@@ -2,12 +2,11 @@
   = f.label :body
   = f.text_area :body, class: 'span6'
 
-  /
-    = f.label :tag_list
-    - @tags.each do |tag|
-      label.checkbox
-        = check_box_tag 'post[tag_list][]', tag.name
-        = tag.name
-    = f.text_field :tag_list, name: 'post[tag_list][]'
+
+  = f.label :tag_list
+  - @tags.each do |tag|
+    label.checkbox
+      = check_box_tag 'post[tag_list][]', tag.name
+      = tag.name
   .actions
     = f.submit 'Save', class: 'btn'
