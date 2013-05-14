@@ -5,9 +5,10 @@ Primum::Application.routes.draw do
   devise_for :users
 
   resources :posts
-  resources :filters, only: [:index, :create, :destroy]
+  resources :filters, only: [:index, :create, :destroy] do
+    resources :tags, only: [:new, :create, :destroy]
+  end
 
-  resources :tag_categories, except: [:show, :edit, :update]
 
   get "/event_listener", to: 'browser#event_listener'
 
