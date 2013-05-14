@@ -1,4 +1,8 @@
-li.tag id="tag_#{tag.id}"
-  = tag.name
-  - if manage_filters?
+- if manage_filters?
+  li.tag id="tag_#{tag.id}"
+    = tag.name
     = link_to "&times;".html_safe, tag, method: :delete, remote: true, class: 'del'
+- else
+  label.checkbox
+    = check_box_tag "tags[]", tag.name
+    = tag.name
